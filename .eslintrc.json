@@ -30,5 +30,5 @@
     "node": true,
     "es2022": true
   },
-  "ignorePatterns": ["dist", "node_modules", "coverage", "*.config.js", "*.config.ts"]
+  "ignorePatterns": ["dist", "node_modules", "coverage", "*.config.js", "*.config.ts", "*.config.mts", "**/*.test.ts", "**/*.spec.ts"]
 }
