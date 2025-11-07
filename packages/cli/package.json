@@ -7,7 +7,9 @@
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -18,7 +20,11 @@
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
-  "keywords": ["cli", "mock", "tool"],
+  "keywords": [
+    "cli",
+    "mock",
+    "tool"
+  ],
   "license": "MIT",
   "dependencies": {
     "@mock-master/core": "workspace:*",

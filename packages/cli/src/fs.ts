@@ -29,10 +29,7 @@ const getScenarioPath = (scenariosDir: string, scenarioName: string): string => 
  * @param scenariosDir - Path to scenarios directory
  * @param scenario - Scenario to write
  */
-export const writeScenario = async (
-  scenariosDir: string,
-  scenario: Scenario
-): Promise<void> => {
+export const writeScenario = async (scenariosDir: string, scenario: Scenario): Promise<void> => {
   await ensureScenarioDir(scenariosDir)
   const filePath = getScenarioPath(scenariosDir, scenario.name)
   const serialized = serializeScenario(scenario)
@@ -50,7 +47,7 @@ export const readScenario = async (
   scenarioName: string
 ): Promise<Scenario | undefined> => {
   const filePath = getScenarioPath(scenariosDir, scenarioName)
-  
+
   const exists = await fs.pathExists(filePath)
   if (!exists) {
     return undefined
@@ -65,9 +62,7 @@ export const readScenario = async (
  * @param scenariosDir - Path to scenarios directory
  * @returns Array of scenario metadata
  */
-export const listScenarios = async (
-  scenariosDir: string
-): Promise<ScenarioMetadata[]> => {
+export const listScenarios = async (scenariosDir: string): Promise<ScenarioMetadata[]> => {
   const exists = await fs.pathExists(scenariosDir)
   if (!exists) {
     return []
@@ -106,10 +101,7 @@ export const listScenarios = async (
  * @param scenariosDir - Path to scenarios directory
  * @param scenarioName - Name of the scenario to delete
  */
-export const deleteScenario = async (
-  scenariosDir: string,
-  scenarioName: string
-): Promise<void> => {
+export const deleteScenario = async (scenariosDir: string, scenarioName: string): Promise<void> => {
   const filePath = getScenarioPath(scenariosDir, scenarioName)
   await fs.remove(filePath)
 }

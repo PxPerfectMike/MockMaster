@@ -27,10 +27,7 @@ export interface ReplayResponse {
  * @param incoming - The incoming request to match
  * @returns True if the requests match
  */
-export const matchRequest = (
-  recorded: RecordedRequest,
-  incoming: IncomingRequest
-): boolean => {
+export const matchRequest = (recorded: RecordedRequest, incoming: IncomingRequest): boolean => {
   const methodMatches = recorded.method === incoming.method
   const pathMatches = recorded.path === incoming.path
   return methodMatches && pathMatches
@@ -46,9 +43,7 @@ export const createReplayHandler = (
 ): ((request: IncomingRequest) => ReplayResponse | undefined) => {
   return (request: IncomingRequest): ReplayResponse | undefined => {
     // Find a matching recording
-    const recording = scenario.recordings.find((rec) =>
-      matchRequest(rec.request, request)
-    )
+    const recording = scenario.recordings.find((rec) => matchRequest(rec.request, request))
 
     if (!recording) {
       return undefined

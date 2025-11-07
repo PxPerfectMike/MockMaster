@@ -300,8 +300,8 @@ describe('End-to-End Integration Tests', () => {
       const allScenarios = await listScenarios(TEST_DIR)
 
       expect(allScenarios).toHaveLength(2)
-      expect(allScenarios.map(s => s.name)).toContain('user-api')
-      expect(allScenarios.map(s => s.name)).toContain('product-api')
+      expect(allScenarios.map((s) => s.name)).toContain('user-api')
+      expect(allScenarios.map((s) => s.name)).toContain('product-api')
 
       // Load individual scenarios
       const userLoaded = await readScenario(TEST_DIR, 'user-api')

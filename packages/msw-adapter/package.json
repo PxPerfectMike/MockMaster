@@ -11,7 +11,9 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
@@ -22,7 +24,11 @@
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
-  "keywords": ["mock", "msw", "testing"],
+  "keywords": [
+    "mock",
+    "msw",
+    "testing"
+  ],
   "license": "MIT",
   "dependencies": {
     "@mock-master/core": "workspace:*",

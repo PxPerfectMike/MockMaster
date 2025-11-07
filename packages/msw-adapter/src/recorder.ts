@@ -57,10 +57,7 @@ export const createScenario = (name: string, description?: string): Scenario => 
  * @param recording - The recording to add
  * @returns A new scenario with the recording added
  */
-export const addRecordingToScenario = (
-  scenario: Scenario,
-  recording: Recording
-): Scenario => {
+export const addRecordingToScenario = (scenario: Scenario, recording: Recording): Scenario => {
   return {
     ...scenario,
     recordings: [...scenario.recordings, recording],

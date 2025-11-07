@@ -1,5 +1,10 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { createRecording, createScenario, addRecordingToScenario, findMatchingRecording } from './recorder'
+import {
+  createRecording,
+  createScenario,
+  addRecordingToScenario,
+  findMatchingRecording,
+} from './recorder'
 import type { RecordedRequest, RecordedResponse, Scenario } from './types'
 
 describe('createRecording', () => {
@@ -96,7 +101,7 @@ describe('addRecordingToScenario', () => {
 
   it('should update the updatedAt timestamp', () => {
     const originalUpdatedAt = scenario.updatedAt
-    
+
     // Wait a tiny bit to ensure timestamp difference
     const request: RecordedRequest = {
       method: 'GET',

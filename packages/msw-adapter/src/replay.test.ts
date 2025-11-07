@@ -87,7 +87,10 @@ describe('createReplayHandler', () => {
 
     const getUsersResponse: RecordedResponse = {
       status: 200,
-      body: [{ id: 1, name: 'John' }, { id: 2, name: 'Jane' }],
+      body: [
+        { id: 1, name: 'John' },
+        { id: 2, name: 'Jane' },
+      ],
       headers: { 'Content-Type': 'application/json' },
       timestamp: Date.now(),
     }
@@ -144,7 +147,10 @@ describe('createReplayHandler', () => {
 
     expect(response).toBeDefined()
     expect(response?.status).toBe(200)
-    expect(response?.body).toEqual([{ id: 1, name: 'John' }, { id: 2, name: 'Jane' }])
+    expect(response?.body).toEqual([
+      { id: 1, name: 'John' },
+      { id: 2, name: 'Jane' },
+    ])
   })
 
   it('should return matching response for POST request', () => {
@@ -186,7 +192,10 @@ describe('createReplayHandler', () => {
     const response = handler(request)
 
     // Should return the first matching recording
-    expect(response?.body).toEqual([{ id: 1, name: 'John' }, { id: 2, name: 'Jane' }])
+    expect(response?.body).toEqual([
+      { id: 1, name: 'John' },
+      { id: 2, name: 'Jane' },
+    ])
   })
 
   it('should include headers in response', () => {
