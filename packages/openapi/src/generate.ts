@@ -4,7 +4,7 @@ import type { Schema } from './types'
 
 /**
  * Simple fake data generators (minimal implementation)
- * In a real implementation, this would use @faker-js/faker from @mock-master/data
+ * In a real implementation, this would use @faker-js/faker from @mockmaster/data
  */
 const generators = {
   string: (): string => 'string-value',

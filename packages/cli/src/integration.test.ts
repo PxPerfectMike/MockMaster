@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import { generateScenariosFromSpec } from './generate'
 import { writeScenario, readScenario, listScenarios } from './fs'
-import { createReplayHandler } from '@mock-master/msw-adapter'
-import { parseYaml } from '@mock-master/openapi'
-import type { OpenAPISpec } from '@mock-master/openapi'
+import { createReplayHandler } from '@mockmaster/msw-adapter'
+import { parseYaml } from '@mockmaster/openapi'
+import type { OpenAPISpec } from '@mockmaster/openapi'
 import * as fs from 'fs-extra'
 import * as path from 'path'
 

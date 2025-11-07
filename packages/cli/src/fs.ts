@@ -2,8 +2,8 @@
 
 import * as fs from 'fs-extra'
 import * as path from 'path'
-import type { Scenario } from '@mock-master/msw-adapter'
-import { serializeScenario, deserializeScenario } from '@mock-master/msw-adapter'
+import type { Scenario } from '@mockmaster/msw-adapter'
+import { serializeScenario, deserializeScenario } from '@mockmaster/msw-adapter'
 import type { ScenarioMetadata } from './types'
 
 /**

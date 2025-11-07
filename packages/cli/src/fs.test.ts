@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
 import { writeScenario, readScenario, listScenarios, deleteScenario, ensureScenarioDir } from './fs'
-import { createScenario, createRecording, addRecordingToScenario } from '@mock-master/msw-adapter'
-import type { RecordedRequest, RecordedResponse } from '@mock-master/msw-adapter'
+import { createScenario, createRecording, addRecordingToScenario } from '@mockmaster/msw-adapter'
+import type { RecordedRequest, RecordedResponse } from '@mockmaster/msw-adapter'
 import * as fs from 'fs-extra'
 import * as path from 'path'
 

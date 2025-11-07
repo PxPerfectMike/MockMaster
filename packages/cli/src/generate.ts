@@ -1,9 +1,9 @@
 // Pure functions for generating scenarios from OpenAPI specs
 
-import type { OpenAPISpec } from '@mock-master/openapi'
-import { getAllOperations, generateFromSchema, resolveAllRefs } from '@mock-master/openapi'
-import { createScenario, createRecording, addRecordingToScenario } from '@mock-master/msw-adapter'
-import type { Scenario, RecordedRequest, RecordedResponse } from '@mock-master/msw-adapter'
+import type { OpenAPISpec } from '@mockmaster/openapi'
+import { getAllOperations, generateFromSchema, resolveAllRefs } from '@mockmaster/openapi'
+import { createScenario, createRecording, addRecordingToScenario } from '@mockmaster/msw-adapter'
+import type { Scenario, RecordedRequest, RecordedResponse } from '@mockmaster/msw-adapter'
 
 /**
  * Generates scenarios from an OpenAPI specification

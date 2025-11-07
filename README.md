@@ -20,9 +20,9 @@
 ## 🚀 Quick Start
 
 ```typescript
-import { generateScenariosFromSpec } from '@mock-master/cli'
-import { createReplayHandler } from '@mock-master/msw-adapter'
-import { parseYaml } from '@mock-master/openapi'
+import { generateScenariosFromSpec } from '@mockmaster/cli'
+import { createReplayHandler } from '@mockmaster/msw-adapter'
+import { parseYaml } from '@mockmaster/openapi'
 
 // 1. Parse OpenAPI spec
 const spec = parseYaml(`
@@ -62,11 +62,11 @@ console.log(response.body) // Array of users with realistic names & emails!
 
 | Package                    | Description                   | Tests |
 | -------------------------- | ----------------------------- | ----- |
-| `@mock-master/core`        | Path matching & HTTP routing  | 32 ✅ |
-| `@mock-master/data`        | Factories & Faker integration | 34 ✅ |
-| `@mock-master/openapi`     | OpenAPI parsing & generation  | 55 ✅ |
-| `@mock-master/msw-adapter` | Record & replay               | 30 ✅ |
-| `@mock-master/cli`         | File system & integration     | 24 ✅ |
+| `@mockmaster/core`        | Path matching & HTTP routing  | 32 ✅ |
+| `@mockmaster/data`        | Factories & Faker integration | 34 ✅ |
+| `@mockmaster/openapi`     | OpenAPI parsing & generation  | 55 ✅ |
+| `@mockmaster/msw-adapter` | Record & replay               | 30 ✅ |
+| `@mockmaster/cli`         | File system & integration     | 24 ✅ |
 
 **Total: 175 tests passing!** 🎉
 
@@ -83,8 +83,8 @@ console.log(response.body) // Array of users with realistic names & emails!
 ### Record & Replay Workflow
 
 ```typescript
-import { createScenario, createRecording, addRecordingToScenario } from '@mock-master/msw-adapter'
-import { writeScenario, readScenario } from '@mock-master/cli'
+import { createScenario, createRecording, addRecordingToScenario } from '@mockmaster/msw-adapter'
+import { writeScenario, readScenario } from '@mockmaster/cli'
 
 // Create scenario
 let scenario = createScenario('my-api', 'Production responses')
@@ -108,7 +108,7 @@ const response = handler({ method: 'GET', path: '/users' })
 ### Factory System
 
 ```typescript
-import { defineFactory, build, fake } from '@mock-master/data'
+import { defineFactory, build, fake } from '@mockmaster/data'
 
 // Define factory
 const userFactory = defineFactory('user', {
@@ -129,7 +129,7 @@ const admin = build(userFactory, { overrides: { role: 'admin' } })
 ### OpenAPI Integration
 
 ```typescript
-import { parseSpec, getAllOperations, generateFromSchema } from '@mock-master/openapi'
+import { parseSpec, getAllOperations, generateFromSchema } from '@mockmaster/openapi'
 
 const spec = parseSpec(yourOpenAPISpecString)
 
