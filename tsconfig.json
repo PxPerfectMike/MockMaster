@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@mock-master/core": ["./packages/core/src"],
+      "@mock-master/msw-adapter": ["./packages/msw-adapter/src"],
+      "@mock-master/openapi": ["./packages/openapi/src"],
+      "@mock-master/data": ["./packages/data/src"],
+      "@mock-master/cli": ["./packages/cli/src"]
+    }
+  },
+  "include": ["packages/**/src/**/*", "apps/**/src/**/*"],
+  "exclude": ["node_modules", "dist", "build", "coverage"]
+}
