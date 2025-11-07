@@ -10,7 +10,7 @@ import {
   createRecording,
   createReplayHandler,
   addRecordingToScenario,
-} from '@mock-master/msw-adapter'
+} from '@mockmaster/msw-adapter'
 
 // Create a scenario
 const scenario = createScenario('simple-api', 'Basic GET request')
@@ -40,8 +40,8 @@ const response = handler({ method: 'GET', path: '/hello' })
 ### Generate from YAML
 
 ```typescript
-import { parseYaml } from '@mock-master/openapi'
-import { generateScenariosFromSpec } from '@mock-master/cli'
+import { parseYaml } from '@mockmaster/openapi'
+import { generateScenariosFromSpec } from '@mockmaster/cli'
 
 const yamlSpec = parseYaml(`
 openapi: 3.0.0
@@ -70,7 +70,7 @@ const scenarios = generateScenariosFromSpec(yamlSpec, 'pet-store')
 ## Factory System
 
 ```typescript
-import { defineFactory, build, fake, resetSequences } from '@mock-master/data'
+import { defineFactory, build, fake, resetSequences } from '@mockmaster/data'
 
 const userFactory = defineFactory('user', {
   id: (ctx) => ctx.sequence('user'),
@@ -92,7 +92,7 @@ resetSequences()
 ## Persistence
 
 ```typescript
-import { writeScenario, readScenario, listScenarios } from '@mock-master/cli'
+import { writeScenario, readScenario, listScenarios } from '@mockmaster/cli'
 
 // Save
 await writeScenario('./scenarios', scenario)
@@ -110,8 +110,8 @@ const all = await listScenarios('./scenarios')
 
 ```typescript
 import { describe, it, expect, beforeAll } from 'vitest'
-import { createReplayHandler } from '@mock-master/msw-adapter'
-import { readScenario } from '@mock-master/cli'
+import { createReplayHandler } from '@mockmaster/msw-adapter'
+import { readScenario } from '@mockmaster/cli'
 
 describe('API Client', () => {
   let handler

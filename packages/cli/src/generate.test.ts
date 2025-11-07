@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { generateScenariosFromSpec } from './generate'
-import type { OpenAPISpec } from '@mock-master/openapi'
+import type { OpenAPISpec } from '@mockmaster/openapi'
 
 describe('generateScenariosFromSpec', () => {
   it('should generate scenarios from OpenAPI spec', () => {

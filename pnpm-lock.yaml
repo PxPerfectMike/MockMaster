@@ -38,13 +38,13 @@ importers:
 
   packages/cli:
     dependencies:
-      '@mock-master/core':
+      '@mockmaster/core':
         specifier: workspace:*
         version: link:../core
-      '@mock-master/msw-adapter':
+      '@mockmaster/msw-adapter':
         specifier: workspace:*
         version: link:../msw-adapter
-      '@mock-master/openapi':
+      '@mockmaster/openapi':
         specifier: workspace:*
         version: link:../openapi
       chalk:
@@ -106,7 +106,7 @@ importers:
       '@faker-js/faker':
         specifier: ^8.4.0
         version: 8.4.1
-      '@mock-master/core':
+      '@mockmaster/core':
         specifier: workspace:*
         version: link:../core
       fp-ts:
@@ -131,7 +131,7 @@ importers:
 
   packages/msw-adapter:
     dependencies:
-      '@mock-master/core':
+      '@mockmaster/core':
         specifier: workspace:*
         version: link:../core
       fp-ts:
@@ -156,7 +156,7 @@ importers:
 
   packages/openapi:
     dependencies:
-      '@mock-master/core':
+      '@mockmaster/core':
         specifier: workspace:*
         version: link:../core
       fp-ts:
