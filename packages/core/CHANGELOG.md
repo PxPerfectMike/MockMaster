@@ -1,5 +1,11 @@
 # @mockmaster/core
 
+## 1.0.1
+
+### Patch Changes
+
+- Add comprehensive README files to all packages for better npm discoverability
+
 ## 1.0.0
 
 ### Major Changes

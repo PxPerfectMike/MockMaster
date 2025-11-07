@@ -1,6 +1,6 @@
 {
   "name": "@mockmaster/data",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Data factories and fake data generation for mock-master",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
