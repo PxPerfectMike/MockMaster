@@ -100,12 +100,12 @@ describe('generateScenariosFromSpec', () => {
 
     expect(scenarios).toHaveLength(1)
     expect(scenarios[0].recordings).toHaveLength(3)
-    
-    const methods = scenarios[0].recordings.map(r => r.request.method)
+
+    const methods = scenarios[0].recordings.map((r) => r.request.method)
     expect(methods).toContain('GET')
     expect(methods).toContain('POST')
-    
-    const paths = scenarios[0].recordings.map(r => r.request.path)
+
+    const paths = scenarios[0].recordings.map((r) => r.request.path)
     expect(paths).toContain('/users')
     expect(paths).toContain('/posts')
   })
@@ -143,7 +143,7 @@ describe('generateScenariosFromSpec', () => {
 
     expect(scenarios[0].recordings[0].response.body).toBeDefined()
     expect(typeof scenarios[0].recordings[0].response.body).toBe('object')
-    
+
     const body = scenarios[0].recordings[0].response.body as Record<string, unknown>
     expect(body).toHaveProperty('id')
     expect(body).toHaveProperty('name')
@@ -200,7 +200,7 @@ describe('generateScenariosFromSpec', () => {
       info: {
         title: 'User API',
         version: '1.0.0',
-        description: 'API for managing users'
+        description: 'API for managing users',
       },
       paths: {},
     }

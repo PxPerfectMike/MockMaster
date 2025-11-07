@@ -11,17 +11,15 @@ import type { Scenario, RecordedRequest, RecordedResponse } from '@mock-master/m
  * @param scenarioName - Name for the generated scenario
  * @returns Array of generated scenarios (currently returns one scenario with all operations)
  */
-export const generateScenariosFromSpec = (
-  spec: OpenAPISpec,
-  scenarioName: string
-): Scenario[] => {
+export const generateScenariosFromSpec = (spec: OpenAPISpec, scenarioName: string): Scenario[] => {
   // Extract all operations from the spec
   const operations = getAllOperations(spec)
 
   // Get base URL from servers
-  const baseUrl = spec.servers && spec.servers.length > 0 && spec.servers[0]
-    ? spec.servers[0].url
-    : 'https://api.example.com'
+  const baseUrl =
+    spec.servers && spec.servers.length > 0 && spec.servers[0]
+      ? spec.servers[0].url
+      : 'https://api.example.com'
 
   // Create description from spec info
   let description = `Generated from ${spec.info.title} (${spec.info.version})`

@@ -60,13 +60,13 @@ console.log(response.body) // Array of users with realistic names & emails!
 
 ## 📦 Packages
 
-| Package | Description | Tests |
-|---------|-------------|-------|
-| `@mock-master/core` | Path matching & HTTP routing | 32 ✅ |
-| `@mock-master/data` | Factories & Faker integration | 34 ✅ |
-| `@mock-master/openapi` | OpenAPI parsing & generation | 55 ✅ |
-| `@mock-master/msw-adapter` | Record & replay | 30 ✅ |
-| `@mock-master/cli` | File system & integration | 24 ✅ |
+| Package                    | Description                   | Tests |
+| -------------------------- | ----------------------------- | ----- |
+| `@mock-master/core`        | Path matching & HTTP routing  | 32 ✅ |
+| `@mock-master/data`        | Factories & Faker integration | 34 ✅ |
+| `@mock-master/openapi`     | OpenAPI parsing & generation  | 55 ✅ |
+| `@mock-master/msw-adapter` | Record & replay               | 30 ✅ |
+| `@mock-master/cli`         | File system & integration     | 24 ✅ |
 
 **Total: 175 tests passing!** 🎉
 
@@ -115,7 +115,7 @@ const userFactory = defineFactory('user', {
   id: (ctx) => ctx.sequence('user'),
   name: () => fake.person.fullName(),
   email: () => fake.internet.email(),
-  role: () => fake.helpers.arrayElement(['admin', 'user'])
+  role: () => fake.helpers.arrayElement(['admin', 'user']),
 })
 
 // Generate test data
@@ -142,8 +142,8 @@ const mockData = generateFromSchema({
   type: 'object',
   properties: {
     id: { type: 'integer' },
-    email: { type: 'string', format: 'email' }
-  }
+    email: { type: 'string', format: 'email' },
+  },
 })
 // { id: 42, email: 'user@example.com' }
 ```
@@ -225,6 +225,7 @@ pnpm build
 Built with love and TDD! Contributions welcome.
 
 **Guidelines:**
+
 - Write tests first (RED → GREEN → REFACTOR)
 - Use pure functions, no side effects
 - Strict TypeScript, no `any` types

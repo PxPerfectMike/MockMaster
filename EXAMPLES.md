@@ -5,7 +5,12 @@ Practical examples showing how to use mock-master in real-world scenarios.
 ## Basic Usage Example
 
 ```typescript
-import { createScenario, createRecording, createReplayHandler, addRecordingToScenario } from '@mock-master/msw-adapter'
+import {
+  createScenario,
+  createRecording,
+  createReplayHandler,
+  addRecordingToScenario,
+} from '@mock-master/msw-adapter'
 
 // Create a scenario
 const scenario = createScenario('simple-api', 'Basic GET request')
@@ -16,12 +21,12 @@ const recording = createRecording(
     method: 'GET',
     url: 'https://api.example.com/hello',
     path: '/hello',
-    timestamp: Date.now()
+    timestamp: Date.now(),
   },
   {
     status: 200,
     body: { message: 'Hello, World!' },
-    timestamp: Date.now()
+    timestamp: Date.now(),
   }
 )
 
@@ -70,7 +75,7 @@ import { defineFactory, build, fake, resetSequences } from '@mock-master/data'
 const userFactory = defineFactory('user', {
   id: (ctx) => ctx.sequence('user'),
   name: () => fake.person.fullName(),
-  email: () => fake.internet.email()
+  email: () => fake.internet.email(),
 })
 
 // Generate users

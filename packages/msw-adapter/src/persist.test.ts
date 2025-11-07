@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest'
-import { serializeScenario, deserializeScenario, serializeRecording, deserializeRecording } from './persist'
+import {
+  serializeScenario,
+  deserializeScenario,
+  serializeRecording,
+  deserializeRecording,
+} from './persist'
 import { createScenario, createRecording, addRecordingToScenario } from './recorder'
 import type { RecordedRequest, RecordedResponse } from './types'
 

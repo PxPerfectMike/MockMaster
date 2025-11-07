@@ -14,6 +14,7 @@ Thank you for your interest in contributing to mock-master! This project is buil
 4. **REPEAT** - For every single feature
 
 **Example:**
+
 ```typescript
 // 1. RED - Write failing test
 describe('matchPath', () => {
@@ -40,11 +41,9 @@ We embrace functional programming principles:
 - **No Classes** - Use functions and plain objects
 
 **✅ Good:**
+
 ```typescript
-export const addRecordingToScenario = (
-  scenario: Scenario,
-  recording: Recording
-): Scenario => {
+export const addRecordingToScenario = (scenario: Scenario, recording: Recording): Scenario => {
   return {
     ...scenario,
     recordings: [...scenario.recordings, recording],
@@ -54,6 +53,7 @@ export const addRecordingToScenario = (
 ```
 
 **❌ Bad:**
+
 ```typescript
 export class Scenario {
   addRecording(recording: Recording) {
@@ -71,6 +71,7 @@ export class Scenario {
 - **exactOptionalPropertyTypes** - handle optional properties carefully
 
 **✅ Good:**
+
 ```typescript
 export const createScenario = (name: string, description?: string): Scenario => {
   const scenario: Scenario = {
@@ -79,11 +80,11 @@ export const createScenario = (name: string, description?: string): Scenario => 
     createdAt: Date.now(),
     updatedAt: Date.now(),
   }
-  
+
   if (description !== undefined) {
     scenario.description = description
   }
-  
+
   return scenario
 }
 ```
@@ -92,7 +93,7 @@ export const createScenario = (name: string, description?: string): Scenario => 
 
 ### Prerequisites
 
-- **Node.js** 18+ 
+- **Node.js** 18+
 - **pnpm** 8+ (we use pnpm workspaces)
 
 ### Setup
@@ -211,10 +212,7 @@ All 175+ tests should pass!
  * @param param2 - Description of parameter
  * @returns Description of return value
  */
-export const functionName = (
-  param1: Type1,
-  param2: Type2
-): ReturnType => {
+export const functionName = (param1: Type1, param2: Type2): ReturnType => {
   // Implementation
   return result
 }
@@ -258,10 +256,10 @@ describe('Feature Name', () => {
     it('should do X when Y happens', () => {
       // Arrange
       const input = createInput()
-      
+
       // Act
       const result = functionUnderTest(input)
-      
+
       // Assert
       expect(result).toEqual(expectedOutput)
     })
@@ -279,6 +277,7 @@ describe('Feature Name', () => {
 ### Test Coverage
 
 We aim for:
+
 - **>90% line coverage**
 - **>80% branch coverage**
 - **100% coverage** on core logic
