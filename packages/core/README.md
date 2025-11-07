@@ -2,7 +2,7 @@
 
 > Core mocking engine for mock-master - Path matching and HTTP routing
 
-Part of the [mock-master](https://github.com/yourusername/mock-master) monorepo.
+Part of the [mock-master](https://github.com/PxPerfectMike/MockMaster) monorepo.
 
 ## Installation
 
@@ -77,9 +77,9 @@ Finds the first mock matching the given path and method.
 
 ## Links
 
-- [Main Documentation](https://github.com/yourusername/mock-master)
+- [Main Documentation](https://github.com/PxPerfectMike/MockMaster)
 - [npm Organization](https://www.npmjs.com/org/mockmaster)
-- [Report Issues](https://github.com/yourusername/mock-master/issues)
+- [Report Issues](https://github.com/PxPerfectMike/MockMaster/issues)
 
 ## License
 

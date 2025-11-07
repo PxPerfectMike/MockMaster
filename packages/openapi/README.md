@@ -2,7 +2,7 @@
 
 > OpenAPI 3.0 parsing and mock data generation for mock-master
 
-Part of the [mock-master](https://github.com/yourusername/mock-master) monorepo.
+Part of the [mock-master](https://github.com/PxPerfectMike/MockMaster) monorepo.
 
 ## Installation
 
@@ -162,7 +162,7 @@ operations.forEach((op) => {
 
 ## Links
 
-- [Main Documentation](https://github.com/yourusername/mock-master)
+- [Main Documentation](https://github.com/PxPerfectMike/MockMaster)
 - [OpenAPI Specification](https://swagger.io/specification/)
 - [npm Organization](https://www.npmjs.com/org/mockmaster)
 

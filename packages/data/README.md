@@ -2,7 +2,7 @@
 
 > Data factories and fake data generation for mock-master
 
-Part of the [mock-master](https://github.com/yourusername/mock-master) monorepo.
+Part of the [mock-master](https://github.com/PxPerfectMike/MockMaster) monorepo.
 
 ## Installation
 
@@ -130,7 +130,7 @@ describe('User API', () => {
 
 ## Links
 
-- [Main Documentation](https://github.com/yourusername/mock-master)
+- [Main Documentation](https://github.com/PxPerfectMike/MockMaster)
 - [Faker.js Documentation](https://fakerjs.dev/)
 - [npm Organization](https://www.npmjs.com/org/mockmaster)
 
