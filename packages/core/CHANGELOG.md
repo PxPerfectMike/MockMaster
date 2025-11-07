@@ -1,5 +1,11 @@
 # @mockmaster/core
 
+## 1.0.2
+
+### Patch Changes
+
+- Fix GitHub repository links in package READMEs (displayed on npm)
+
 ## 1.0.1
 
 ### Patch Changes
