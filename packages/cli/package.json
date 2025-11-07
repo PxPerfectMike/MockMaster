@@ -1,6 +1,6 @@
 {
   "name": "@mockmaster/cli",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "CLI tool for mock-master",
   "bin": {
     "mock-master": "./dist/index.js"
