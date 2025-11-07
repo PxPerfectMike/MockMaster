@@ -1,5 +1,15 @@
 # @mockmaster/cli
 
+## 1.0.2
+
+### Patch Changes
+
+- Fix GitHub repository links in package READMEs (displayed on npm)
+- Updated dependencies
+  - @mockmaster/core@1.0.2
+  - @mockmaster/openapi@1.0.2
+  - @mockmaster/msw-adapter@1.0.2
+
 ## 1.0.1
 
 ### Patch Changes
