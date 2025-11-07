@@ -18,7 +18,7 @@ const patternToRegex = (pattern: string): RegExp => {
   // Replace wildcard placeholder
   // Check if wildcard is at the end - if so, match everything
   // Otherwise, match only non-slash characters (single path segment)
-  const withWildcards = withParams.replace(/__WILDCARD__/g, (match, offset, string) => {
+  const withWildcards = withParams.replace(/__WILDCARD__/g, (match: string, offset: number, string: string) => {
     // If wildcard is at the end, match everything including slashes
     if (offset + match.length >= string.length || string[offset + match.length] === '$') {
       return '.*'

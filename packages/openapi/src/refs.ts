@@ -9,7 +9,7 @@ import type { OpenAPISpec, Schema } from './types'
  * @param ref - Reference string (e.g., '#/components/schemas/User')
  * @returns Resolved object or undefined if not found
  */
-export const resolveRef = (spec: OpenAPISpec, ref: string): unknown | undefined => {
+export const resolveRef = (spec: OpenAPISpec, ref: string): unknown => {
   // Must start with #/ for internal references
   if (!ref.startsWith('#/')) {
     return undefined

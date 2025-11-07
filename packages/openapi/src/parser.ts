@@ -11,7 +11,7 @@ import type { OpenAPISpec } from './types'
  */
 export const parseYaml = (yaml: string): OpenAPISpec => {
   try {
-    const parsed = YAML.parse(yaml)
+    const parsed: unknown = YAML.parse(yaml)
     return parsed as OpenAPISpec
   } catch (error) {
     if (error instanceof Error) {
@@ -29,7 +29,7 @@ export const parseYaml = (yaml: string): OpenAPISpec => {
  */
 export const parseJson = (json: string): OpenAPISpec => {
   try {
-    const parsed = JSON.parse(json)
+    const parsed: unknown = JSON.parse(json)
     return parsed as OpenAPISpec
   } catch (error) {
     if (error instanceof Error) {
