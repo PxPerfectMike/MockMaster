@@ -1,30 +1,32 @@
 # mock-master 🎭
 
-> Next-generation API mocking built with TypeScript, TDD, and functional programming
+> Type-safe API mocking with record & replay
 
-[![Tests](https://img.shields.io/badge/tests-175%20passing-brightgreen)]() [![Coverage](https://img.shields.io/badge/coverage-90%25-brightgreen)]() [![TypeScript](https://img.shields.io/badge/typescript-5.3-blue)]() [![License](https://img.shields.io/badge/license-MIT-blue)]()
+[![Tests](https://img.shields.io/badge/tests-178%20passing-brightgreen)](https://github.com/PxPerfectMike/MockMaster) [![Coverage](https://img.shields.io/badge/coverage-90%25-brightgreen)](https://github.com/PxPerfectMike/MockMaster) [![TypeScript](https://img.shields.io/badge/typescript-5.3-blue)](https://github.com/PxPerfectMike/MockMaster) [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/PxPerfectMike/MockMaster)
 
-**mock-master** is a type-safe, functional API mocking library with record & replay, OpenAPI-first design, and a powerful factory system for realistic test data.
+**mock-master** lets you capture real API responses and replay them deterministically. Perfect for testing, offline development, and reliable demos.
 
-## ✨ Features
+## Why mock-master?
 
-- **🎬 Record & Replay** - Capture real API responses and replay them deterministically
-- **📝 OpenAPI First** - Generate scenarios from OpenAPI 3.0 specs (JSON & YAML)
-- **🔒 Type Safe** - Built with strict TypeScript, zero escape hatches
-- **🧪 Framework Agnostic** - Works with Vitest, Jest, Playwright, any framework
-- **⚡ Functional** - Pure functions, immutable data, composable APIs
-- **🏭 Factory System** - Generate realistic test data with Faker.js
-- **💾 Scenario Management** - Version control your mock scenarios as JSON
-- **🎯 175 Tests** - Every feature built with TDD (Test-Driven Development)
+- **🎬 Record & Replay** - Capture production API responses once, replay forever
+- **📝 OpenAPI Integration** - Generate mocks from OpenAPI 3.0 specs (JSON & YAML)
+- **🏭 Realistic Data** - Built-in factories with Faker.js for authentic test data
+- **💾 Version Control** - Store scenarios as JSON, commit with your code
+- **🔒 Type Safe** - Full TypeScript support with strict typing
+- **🧪 Framework Agnostic** - Works with Vitest, Jest, Playwright, any test framework
 
-## 🚀 Quick Start
+## Quick Start
+
+```bash
+npm install @mockmaster/openapi @mockmaster/cli @mockmaster/msw-adapter
+```
 
 ```typescript
-import { generateScenariosFromSpec } from '@mockmaster/cli'
-import { createReplayHandler } from '@mockmaster/msw-adapter'
 import { parseYaml } from '@mockmaster/openapi'
+import { generateScenariosFromSpec, writeScenario } from '@mockmaster/cli'
+import { createReplayHandler } from '@mockmaster/msw-adapter'
 
-// 1. Parse OpenAPI spec
+// 1. Parse your OpenAPI spec
 const spec = parseYaml(`
 openapi: 3.0.0
 info:
@@ -50,46 +52,46 @@ paths:
 // 2. Generate scenarios with realistic mock data
 const scenarios = generateScenariosFromSpec(spec, 'user-api')
 
-// 3. Create replay handler
-const handler = createReplayHandler(scenarios[0])
+// 3. Save to disk (commit these with your tests!)
+await writeScenario('./scenarios', scenarios[0])
 
-// 4. Replay requests
+// 4. Replay in your tests
+const handler = createReplayHandler(scenarios[0])
 const response = handler({ method: 'GET', path: '/users' })
-console.log(response.body) // Array of users with realistic names & emails!
+console.log(response.body) // Array of users with realistic data
 ```
 
-## 📦 Packages
+## Use Cases
 
-| Package                    | Description                   | Tests |
-| -------------------------- | ----------------------------- | ----- |
-| `@mockmaster/core`        | Path matching & HTTP routing  | 32 ✅ |
-| `@mockmaster/data`        | Factories & Faker integration | 34 ✅ |
-| `@mockmaster/openapi`     | OpenAPI parsing & generation  | 55 ✅ |
-| `@mockmaster/msw-adapter` | Record & replay               | 30 ✅ |
-| `@mockmaster/cli`         | File system & integration     | 24 ✅ |
+- **Testing** - Deterministic API responses for reliable tests
+- **Offline Development** - Work without network access
+- **CI/CD** - Fast tests that don't hit real APIs
+- **Storybook** - Develop UI components with realistic data
+- **Demos** - Present apps without backend dependencies
+- **Contract Testing** - Validate against OpenAPI specs
 
-**Total: 175 tests passing!** 🎉
+## Packages
 
-## 💡 Use Cases
+| Package                    | Description                   |
+| -------------------------- | ----------------------------- |
+| `@mockmaster/core`        | Path matching & HTTP routing  |
+| `@mockmaster/data`        | Factories & Faker integration |
+| `@mockmaster/openapi`     | OpenAPI parsing & generation  |
+| `@mockmaster/msw-adapter` | Record & replay engine        |
+| `@mockmaster/cli`         | File system operations        |
 
-- **Testing** - Consistent, deterministic mock data for reliable tests
-- **Storybook** - Develop UI components with realistic API states
-- **Local Dev** - Work offline or with unstable APIs
-- **Demos** - Present applications without backend dependencies
-- **Contract Testing** - Validate against OpenAPI specifications
+## Examples
 
-## 📚 Examples
-
-### Record & Replay Workflow
+### Record & Replay
 
 ```typescript
 import { createScenario, createRecording, addRecordingToScenario } from '@mockmaster/msw-adapter'
 import { writeScenario, readScenario } from '@mockmaster/cli'
 
-// Create scenario
+// Create a scenario
 let scenario = createScenario('my-api', 'Production responses')
 
-// Add recording
+// Add recorded responses
 const recording = createRecording(
   { method: 'GET', url: 'https://api.example.com/users', path: '/users', timestamp: Date.now() },
   { status: 200, body: [{ id: 1, name: 'John' }], timestamp: Date.now() }
@@ -99,7 +101,7 @@ scenario = addRecordingToScenario(scenario, recording)
 // Save to disk
 await writeScenario('./scenarios', scenario)
 
-// Load and replay later
+// Later, load and replay
 const loaded = await readScenario('./scenarios', 'my-api')
 const handler = createReplayHandler(loaded)
 const response = handler({ method: 'GET', path: '/users' })
@@ -110,7 +112,7 @@ const response = handler({ method: 'GET', path: '/users' })
 ```typescript
 import { defineFactory, build, fake } from '@mockmaster/data'
 
-// Define factory
+// Define a factory
 const userFactory = defineFactory('user', {
   id: (ctx) => ctx.sequence('user'),
   name: () => fake.person.fullName(),
@@ -131,11 +133,10 @@ const admin = build(userFactory, { overrides: { role: 'admin' } })
 ```typescript
 import { parseSpec, getAllOperations, generateFromSchema } from '@mockmaster/openapi'
 
-const spec = parseSpec(yourOpenAPISpecString)
+const spec = parseSpec(yourOpenAPISpec)
 
 // Extract all API operations
 const operations = getAllOperations(spec)
-// [{ path: '/users', method: 'get', operation: {...} }, ...]
 
 // Generate mock data from schema
 const mockData = generateFromSchema({
@@ -145,96 +146,36 @@ const mockData = generateFromSchema({
     email: { type: 'string', format: 'email' },
   },
 })
-// { id: 42, email: 'user@example.com' }
 ```
 
-## 🏗️ Architecture
+## Development
 
-Built with functional programming principles:
-
-- **Pure Functions** - No side effects, predictable behavior
-- **Immutability** - No mutations, spread operators everywhere
-- **Composition** - Small, focused functions that compose beautifully
-- **Type Safety** - Strict TypeScript with no `any` types
-
-```
-mock-master/
-├── packages/
-│   ├── core/           # Path matching & routing
-│   ├── data/           # Factory system & Faker
-│   ├── openapi/        # OpenAPI 3.0 parsing
-│   ├── msw-adapter/    # Record & replay
-│   └── cli/            # File system ops
-└── 175 tests ✅
-```
-
-## 🛠️ Development
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and guidelines.
 
 ```bash
 # Install dependencies
 pnpm install
 
-# Run all tests
+# Run tests
 pnpm test
 
-# Watch mode
-pnpm test:watch
-
-# Coverage
-pnpm test:coverage
-
-# Build
+# Build packages
 pnpm build
 ```
 
-### Tech Stack
+## Roadmap
 
-- **pnpm workspaces** + **Turborepo** - Monorepo management
-- **TypeScript 5.3** - Strict mode
-- **Vitest** - Fast, modern testing
-- **Faker.js** - Realistic fake data
-- **yaml** - OpenAPI YAML parsing
-- **fs-extra** - File system utilities
-
-## ✅ Roadmap
-
-### Completed
-
-- ✅ Core mocking engine (path matching, HTTP methods)
-- ✅ Factory system with Faker.js integration
-- ✅ OpenAPI 3.0 parsing (JSON & YAML)
-- ✅ $ref resolution (with circular detection)
-- ✅ Schema-based mock generation
-- ✅ Record & replay functionality
-- ✅ File system persistence
-- ✅ Scenario management
-- ✅ End-to-end integration
-- ✅ 175 comprehensive tests
-
-### Next
-
-- [ ] Interactive CLI commands
 - [ ] MSW browser/Node.js integration
+- [ ] Interactive CLI commands
 - [ ] Middleware system
 - [ ] Plugin architecture
 - [ ] Visual UI dashboard
 - [ ] GraphQL support
 
-## 🤝 Contributing
+## Contributing
 
-Built with love and TDD! Contributions welcome.
+Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-**Guidelines:**
+## License
 
-- Write tests first (RED → GREEN → REFACTOR)
-- Use pure functions, no side effects
-- Strict TypeScript, no `any` types
-- Keep functions small and focused
-
-## 📄 License
-
-MIT
-
----
-
-**Built with Test-Driven Development, functional programming, and care** ❤️
+MIT © [PxPerfectMike](https://github.com/PxPerfectMike)
