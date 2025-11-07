@@ -1,5 +1,15 @@
 # @mockmaster/cli
 
+## 1.0.1
+
+### Patch Changes
+
+- Add comprehensive README files to all packages for better npm discoverability
+- Updated dependencies
+  - @mockmaster/core@1.0.1
+  - @mockmaster/openapi@1.0.1
+  - @mockmaster/msw-adapter@1.0.1
+
 ## 1.0.0
 
 ### Major Changes
