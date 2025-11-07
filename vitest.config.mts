@@ -13,7 +13,9 @@ export default defineConfig({
         '**/*.test.ts',
         '**/*.spec.ts',
         '**/vitest.config.ts',
+        '**/vitest.config.mts',
         '**/tsconfig.json',
+        '**/index.ts', // CLI entry points
       ],
       thresholds: {
         lines: 80,
