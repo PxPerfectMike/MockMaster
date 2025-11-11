@@ -1,12 +1,12 @@
-# mock-master 🎭
+# MockMaster 🎭
 
 > Type-safe API mocking with record & replay
 
 [![Tests](https://img.shields.io/badge/tests-178%20passing-brightgreen)](https://github.com/PxPerfectMike/MockMaster) [![Coverage](https://img.shields.io/badge/coverage-90%25-brightgreen)](https://github.com/PxPerfectMike/MockMaster) [![TypeScript](https://img.shields.io/badge/typescript-5.3-blue)](https://github.com/PxPerfectMike/MockMaster) [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/PxPerfectMike/MockMaster)
 
-**mock-master** lets you capture real API responses and replay them deterministically. Perfect for testing, offline development, and reliable demos.
+**mockmaster** lets you capture real API responses and replay them deterministically. Perfect for testing, offline development, and reliable demos.
 
-## Why mock-master?
+## Why mockmaster?
 
 - **🎬 Record & Replay** - Capture production API responses once, replay forever
 - **📝 OpenAPI Integration** - Generate mocks from OpenAPI 3.0 specs (JSON & YAML)
