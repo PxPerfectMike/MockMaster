@@ -1,5 +1,12 @@
 # @mockmaster/data
 
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @mockmaster/core@1.0.4
+
 ## 1.0.4
 
 ### Patch Changes

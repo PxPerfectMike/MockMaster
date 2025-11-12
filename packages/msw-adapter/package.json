@@ -1,6 +1,6 @@
 {
   "name": "@mockmaster/msw-adapter",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "MSW integration adapter for mock-master",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

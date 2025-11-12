@@ -1,5 +1,11 @@
 # @mockmaster/core
 
+## 1.0.4
+
+### Patch Changes
+
+- Update README documentation to include extractParams and createMatcher functions that were added in v1.0.3 but not documented in the package README.
+
 ## 1.0.3
 
 ### Patch Changes
