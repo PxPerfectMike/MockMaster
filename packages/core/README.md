@@ -75,6 +75,34 @@ Creates a mock object with path, method, and response.
 
 Finds the first mock matching the given path and method.
 
+### `extractParams(pattern: string, path: string): Record<string, string> | null`
+
+Extracts parameter values from a path.
+
+```typescript
+import { extractParams } from '@mockmaster/core'
+
+const params = extractParams('/users/:id', '/users/123')
+// { id: '123' }
+
+const params2 = extractParams('/users/:userId/posts/:postId', '/users/1/posts/42')
+// { userId: '1', postId: '42' }
+```
+
+### `createMatcher(patterns: string[]): (path: string) => boolean`
+
+Creates a matcher function from multiple patterns.
+
+```typescript
+import { createMatcher } from '@mockmaster/core'
+
+const matcher = createMatcher(['/api/*', '/users/:id'])
+
+matcher('/api/users')    // true
+matcher('/users/123')    // true
+matcher('/posts/456')    // false
+```
+
 ## Links
 
 - [Main Documentation](https://github.com/PxPerfectMike/MockMaster)
