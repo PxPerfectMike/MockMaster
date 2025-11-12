@@ -75,3 +75,14 @@ export const parsePathParams = (pattern: string, path: string): Record<string, s
 
   return match.groups
 }
+
+/**
+ * Creates a reusable matcher function for multiple path patterns
+ * @param patterns - Array of path patterns to match against
+ * @returns A function that tests if a path matches any pattern
+ */
+export const createMatcher = (patterns: string[]): ((path: string) => boolean) => {
+  return (path: string): boolean => {
+    return patterns.some((pattern) => matchPath(pattern, path))
+  }
+}

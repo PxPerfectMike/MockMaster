@@ -52,7 +52,7 @@ describe('fake - basic data generation', () => {
   })
 
   it('should generate numbers in range', () => {
-    const num = fake.number({ min: 1, max: 10 })
+    const num = fake.number.int({ min: 1, max: 10 })
 
     expect(num).toBeGreaterThanOrEqual(1)
     expect(num).toBeLessThanOrEqual(10)
@@ -193,7 +193,7 @@ describe('integration with factory', () => {
     const user: User = {
       name: fake.name(),
       email: fake.email(),
-      age: fake.number({ min: 18, max: 80 }),
+      age: fake.number.int({ min: 18, max: 80 }),
     }
 
     expect(user.name).toBeTruthy()

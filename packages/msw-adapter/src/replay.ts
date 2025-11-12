@@ -1,5 +1,6 @@
 // Pure functions for replaying recorded requests/responses
 
+import { matchPath } from '@mockmaster/core'
 import type { RecordedRequest, Scenario } from './types'
 
 /**
@@ -22,14 +23,14 @@ export interface ReplayResponse {
 
 /**
  * Matches an incoming request against a recorded request
- * Currently does simple method + path matching
+ * Uses pattern matching for paths (e.g., /users/:id matches /users/123)
  * @param recorded - The recorded request
  * @param incoming - The incoming request to match
  * @returns True if the requests match
  */
 export const matchRequest = (recorded: RecordedRequest, incoming: IncomingRequest): boolean => {
   const methodMatches = recorded.method === incoming.method
-  const pathMatches = recorded.path === incoming.path
+  const pathMatches = matchPath(recorded.path, incoming.path)
   return methodMatches && pathMatches
 }
 

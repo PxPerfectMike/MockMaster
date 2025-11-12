@@ -69,6 +69,54 @@ describe('matchRequest', () => {
     // Basic matching ignores query params
     expect(matchRequest(recorded, incoming)).toBe(true)
   })
+
+  it('should match path with parameters (pattern matching)', () => {
+    const recorded: RecordedRequest = {
+      method: 'GET',
+      url: 'https://api.example.com/users/123',
+      path: '/users/:id',
+      timestamp: Date.now(),
+    }
+
+    const incoming = {
+      method: 'GET',
+      path: '/users/123',
+    }
+
+    expect(matchRequest(recorded, incoming)).toBe(true)
+  })
+
+  it('should match different IDs with same parameter pattern', () => {
+    const recorded: RecordedRequest = {
+      method: 'GET',
+      url: 'https://api.example.com/users/123',
+      path: '/users/:id',
+      timestamp: Date.now(),
+    }
+
+    const incoming = {
+      method: 'GET',
+      path: '/users/456',
+    }
+
+    expect(matchRequest(recorded, incoming)).toBe(true)
+  })
+
+  it('should match multiple path parameters', () => {
+    const recorded: RecordedRequest = {
+      method: 'GET',
+      url: 'https://api.example.com/users/1/posts/5',
+      path: '/users/:userId/posts/:postId',
+      timestamp: Date.now(),
+    }
+
+    const incoming = {
+      method: 'GET',
+      path: '/users/99/posts/88',
+    }
+
+    expect(matchRequest(recorded, incoming)).toBe(true)
+  })
 })
 
 describe('createReplayHandler', () => {

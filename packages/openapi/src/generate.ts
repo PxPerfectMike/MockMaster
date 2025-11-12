@@ -10,6 +10,7 @@ const generators = {
   string: (): string => 'string-value',
   email: (): string => 'user@example.com',
   uuid: (): string => '123e4567-e89b-12d3-a456-426614174000',
+  date: (): string => new Date().toISOString().split('T')[0] ?? '', // YYYY-MM-DD
   dateTime: (): string => new Date().toISOString(),
   uri: (): string => 'https://example.com',
   integer: (): number => Math.floor(Math.random() * 100),
@@ -83,6 +84,9 @@ const generateString = (schema: Schema): string => {
 
     case 'uuid':
       return generators.uuid()
+
+    case 'date':
+      return generators.date()
 
     case 'date-time':
       return generators.dateTime()
