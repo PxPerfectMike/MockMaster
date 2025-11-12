@@ -2,7 +2,7 @@
 
 > Type-safe API mocking with record & replay
 
-[![Tests](https://img.shields.io/badge/tests-178%20passing-brightgreen)](https://github.com/PxPerfectMike/MockMaster) [![Coverage](https://img.shields.io/badge/coverage-90%25-brightgreen)](https://github.com/PxPerfectMike/MockMaster) [![TypeScript](https://img.shields.io/badge/typescript-5.3-blue)](https://github.com/PxPerfectMike/MockMaster) [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/PxPerfectMike/MockMaster)
+[![Tests](https://img.shields.io/badge/tests-184%20passing-brightgreen)](https://github.com/PxPerfectMike/MockMaster) [![Coverage](https://img.shields.io/badge/coverage-90%25-brightgreen)](https://github.com/PxPerfectMike/MockMaster) [![TypeScript](https://img.shields.io/badge/typescript-5.3-blue)](https://github.com/PxPerfectMike/MockMaster) [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/PxPerfectMike/MockMaster)
 
 **mockmaster** lets you capture real API responses and replay them deterministically. Perfect for testing, offline development, and reliable demos.
 
