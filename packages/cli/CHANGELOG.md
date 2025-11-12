@@ -1,5 +1,14 @@
 # @mockmaster/cli
 
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @mockmaster/core@1.0.4
+  - @mockmaster/msw-adapter@1.0.5
+  - @mockmaster/openapi@1.0.4
+
 ## 1.0.6
 
 ### Patch Changes

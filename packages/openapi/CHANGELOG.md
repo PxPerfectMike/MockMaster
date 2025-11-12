@@ -1,5 +1,12 @@
 # @mockmaster/openapi
 
+## 1.0.4
+
+### Patch Changes
+
+- Updated dependencies
+  - @mockmaster/core@1.0.4
+
 ## 1.0.3
 
 ### Patch Changes
