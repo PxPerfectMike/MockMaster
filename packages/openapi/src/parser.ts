@@ -41,11 +41,21 @@ export const parseJson = (json: string): OpenAPISpec => {
 
 /**
  * Detects format and parses OpenAPI specification
- * Automatically detects YAML or JSON format
- * @param content - String content (YAML or JSON)
+ * Automatically detects YAML, JSON string, or JavaScript object
+ * @param content - String content (YAML or JSON) or JavaScript object
  * @returns Parsed OpenAPI specification
  */
-export const parseSpec = (content: string): OpenAPISpec => {
+export const parseSpec = (content: string | unknown): OpenAPISpec => {
+  // If already an object, return it as-is
+  if (typeof content === 'object' && content !== null) {
+    return content as OpenAPISpec
+  }
+
+  // If not a string at this point, something is wrong
+  if (typeof content !== 'string') {
+    throw new Error('parseSpec expects a string (YAML/JSON) or an object')
+  }
+
   // Trim whitespace
   const trimmed = content.trim()
 

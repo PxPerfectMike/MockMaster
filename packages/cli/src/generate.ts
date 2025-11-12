@@ -6,6 +6,15 @@ import { createScenario, createRecording, addRecordingToScenario } from '@mockma
 import type { Scenario, RecordedRequest, RecordedResponse } from '@mockmaster/msw-adapter'
 
 /**
+ * Converts OpenAPI path parameters from {id} format to :id format
+ * @param openapiPath - Path in OpenAPI format (e.g., '/users/{id}')
+ * @returns Path in Express/router format (e.g., '/users/:id')
+ */
+const convertPathFormat = (openapiPath: string): string => {
+  return openapiPath.replace(/\{([^}]+)\}/g, ':$1')
+}
+
+/**
  * Generates scenarios from an OpenAPI specification
  * @param spec - The OpenAPI specification
  * @param scenarioName - Name for the generated scenario
@@ -51,21 +60,35 @@ export const generateScenariosFromSpec = (spec: OpenAPISpec, scenarioName: strin
 
     // Get the response schema
     const content = responseObj.content?.['application/json']
-    if (!content || !content.schema) {
-      continue
+
+    // Determine if this response has content
+    let mockData: unknown = null
+    let headers: Record<string, string> = {}
+
+    if (content && content.schema) {
+      // Response has content - generate mock data
+      const resolvedSchema = resolveAllRefs(spec, content.schema)
+      mockData = generateFromSchema(resolvedSchema)
+      headers = { 'Content-Type': 'application/json' }
+    } else if (status === 204) {
+      // 204 No Content - explicitly set null body and no Content-Type header
+      mockData = null
+      headers = {}
+    } else {
+      // Other responses without content (e.g., 201 Created with Location header)
+      // Still create a recording but with empty body
+      mockData = null
+      headers = {}
     }
 
-    // Resolve any $refs in the schema
-    const resolvedSchema = resolveAllRefs(spec, content.schema)
-
-    // Generate mock data from the schema
-    const mockData = generateFromSchema(resolvedSchema)
-
     // Create recorded request
+    // Convert OpenAPI path format {id} to Express format :id
+    const routerPath = convertPathFormat(op.path)
+
     const request: RecordedRequest = {
       method: op.method.toUpperCase(),
       url: `${baseUrl}${op.path}`,
-      path: op.path,
+      path: routerPath,
       timestamp: Date.now(),
     }
 
@@ -73,9 +96,7 @@ export const generateScenariosFromSpec = (spec: OpenAPISpec, scenarioName: strin
     const response: RecordedResponse = {
       status,
       body: mockData,
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers,
       timestamp: Date.now(),
     }
 

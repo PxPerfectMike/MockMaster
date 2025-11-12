@@ -19,48 +19,99 @@ export const resetSeed = (): void => {
 
 /**
  * Functional API for generating fake data
+ * Matches @faker-js/faker API structure for consistency
  */
 export const fake = {
   /**
-   * Generates a full name
+   * Person-related generation functions
    */
-  name: (): string => faker.person.fullName(),
+  person: {
+    /**
+     * Generates a full name
+     */
+    fullName: (): string => faker.person.fullName(),
 
-  /**
-   * Generates a first name
-   */
-  firstName: (): string => faker.person.firstName(),
+    /**
+     * Generates a first name
+     */
+    firstName: (): string => faker.person.firstName(),
 
-  /**
-   * Generates a last name
-   */
-  lastName: (): string => faker.person.lastName(),
+    /**
+     * Generates a last name
+     */
+    lastName: (): string => faker.person.lastName(),
 
-  /**
-   * Generates an email address
-   */
-  email: (): string => faker.internet.email(),
-
-  /**
-   * Generates a UUID
-   */
-  uuid: (): string => faker.string.uuid(),
-
-  /**
-   * Generates a number within a range
-   * @param options - Min and max values
-   */
-  number: (options?: { min?: number; max?: number }): number => {
-    return faker.number.int({
-      min: options?.min ?? 0,
-      max: options?.max ?? 100,
-    })
+    /**
+     * Generates a job title
+     */
+    jobTitle: (): string => faker.person.jobTitle(),
   },
 
   /**
-   * Generates a boolean value
+   * Internet-related generation functions
    */
-  boolean: (): boolean => faker.datatype.boolean(),
+  internet: {
+    /**
+     * Generates an email address
+     */
+    email: (): string => faker.internet.email(),
+
+    /**
+     * Generates a username
+     */
+    userName: (): string => faker.internet.userName(),
+
+    /**
+     * @deprecated Use userName instead (camelCase)
+     */
+    username: (): string => faker.internet.userName(),
+
+    /**
+     * Generates a URL
+     */
+    url: (): string => faker.internet.url(),
+
+    /**
+     * Generates an IPv4 address
+     */
+    ipv4: (): string => faker.internet.ipv4(),
+  },
+
+  /**
+   * Number generation functions
+   */
+  number: {
+    /**
+     * Generates an integer within a range
+     * @param options - Min and max values
+     */
+    int: (options?: { min?: number; max?: number }): number => {
+      return faker.number.int({
+        min: options?.min ?? 0,
+        max: options?.max ?? 100,
+      })
+    },
+  },
+
+  /**
+   * String generation functions
+   */
+  string: {
+    /**
+     * Generates a UUID
+     */
+    uuid: (): string => faker.string.uuid(),
+  },
+
+  /**
+   * Helper functions
+   */
+  helpers: {
+    /**
+     * Picks a random element from an array
+     */
+    arrayElement: <T>(array: readonly T[]): T => faker.helpers.arrayElement(array),
+  },
 
   /**
    * Date generation functions
@@ -87,18 +138,34 @@ export const fake = {
     recent: (): Date => faker.date.recent(),
   },
 
+  // Backward compatibility: keep flat API for existing code
   /**
-   * Internet-related generation functions
+   * @deprecated Use fake.person.fullName() instead
    */
-  internet: {
-    /**
-     * Generates a URL
-     */
-    url: (): string => faker.internet.url(),
+  name: (): string => faker.person.fullName(),
 
-    /**
-     * Generates a username
-     */
-    username: (): string => faker.internet.userName(),
-  },
+  /**
+   * @deprecated Use fake.person.firstName() instead
+   */
+  firstName: (): string => faker.person.firstName(),
+
+  /**
+   * @deprecated Use fake.person.lastName() instead
+   */
+  lastName: (): string => faker.person.lastName(),
+
+  /**
+   * @deprecated Use fake.internet.email() instead
+   */
+  email: (): string => faker.internet.email(),
+
+  /**
+   * @deprecated Use fake.string.uuid() instead
+   */
+  uuid: (): string => faker.string.uuid(),
+
+  /**
+   * Generates a boolean value
+   */
+  boolean: (): boolean => faker.datatype.boolean(),
 }

@@ -266,7 +266,7 @@ describe('generateScenariosFromSpec', () => {
     expect(scenarios[0].recordings).toHaveLength(0)
   })
 
-  it('should skip operations without content or schema', () => {
+  it('should handle operations without content or schema (create recordings with null body)', () => {
     const spec: OpenAPISpec = {
       openapi: '3.0.0',
       info: { title: 'API', version: '1.0.0' },
@@ -299,6 +299,143 @@ describe('generateScenariosFromSpec', () => {
     const scenarios = generateScenariosFromSpec(spec, 'api-spec')
 
     expect(scenarios).toHaveLength(1)
-    expect(scenarios[0].recordings).toHaveLength(0)
+    expect(scenarios[0].recordings).toHaveLength(2)
+
+    // Check both recordings have null body and empty headers
+    scenarios[0].recordings.forEach((recording) => {
+      expect(recording.response.body).toBeNull()
+      expect(recording.response.headers).toEqual({})
+    })
+  })
+
+  it('should convert OpenAPI path parameters from {id} to :id format', () => {
+    const spec: OpenAPISpec = {
+      openapi: '3.0.0',
+      info: { title: 'API', version: '1.0.0' },
+      paths: {
+        '/users/{id}': {
+          get: {
+            responses: {
+              '200': {
+                description: 'Success',
+                content: {
+                  'application/json': {
+                    schema: {
+                      type: 'object',
+                      properties: {
+                        id: { type: 'integer' },
+                        name: { type: 'string' },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        '/users/{userId}/posts/{postId}': {
+          get: {
+            responses: {
+              '200': {
+                description: 'Success',
+                content: {
+                  'application/json': {
+                    schema: { type: 'object' },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    }
+
+    const scenarios = generateScenariosFromSpec(spec, 'param-spec')
+
+    expect(scenarios).toHaveLength(1)
+    expect(scenarios[0].recordings).toHaveLength(2)
+
+    // Check that OpenAPI {id} format is converted to Express :id format
+    const paths = scenarios[0].recordings.map((r) => r.request.path)
+    expect(paths).toContain('/users/:id')
+    expect(paths).toContain('/users/:userId/posts/:postId')
+
+    // Verify original URL keeps OpenAPI format
+    expect(scenarios[0].recordings[0].request.url).toContain('/users/{id}')
+  })
+
+  it('should handle 204 No Content responses (e.g., DELETE operations)', () => {
+    const spec: OpenAPISpec = {
+      openapi: '3.0.0',
+      info: { title: 'API', version: '1.0.0' },
+      paths: {
+        '/users/{id}': {
+          delete: {
+            responses: {
+              '204': {
+                description: 'No Content - User deleted successfully',
+                // Note: 204 responses typically have no content section
+              },
+            },
+          },
+        },
+        '/posts/{id}': {
+          delete: {
+            responses: {
+              '204': {
+                description: 'No Content',
+              },
+            },
+          },
+        },
+      },
+    }
+
+    const scenarios = generateScenariosFromSpec(spec, 'delete-spec')
+
+    expect(scenarios).toHaveLength(1)
+    expect(scenarios[0].recordings).toHaveLength(2)
+
+    // Check both DELETE operations were recorded
+    const methods = scenarios[0].recordings.map((r) => r.request.method)
+    expect(methods).toEqual(['DELETE', 'DELETE'])
+
+    // Check paths were converted correctly
+    const paths = scenarios[0].recordings.map((r) => r.request.path)
+    expect(paths).toContain('/users/:id')
+    expect(paths).toContain('/posts/:id')
+
+    // Check 204 responses have null body and no Content-Type header
+    scenarios[0].recordings.forEach((recording) => {
+      expect(recording.response.status).toBe(204)
+      expect(recording.response.body).toBeNull()
+      expect(recording.response.headers).toEqual({})
+    })
+  })
+
+  it('should handle responses without content schema', () => {
+    const spec: OpenAPISpec = {
+      openapi: '3.0.0',
+      info: { title: 'API', version: '1.0.0' },
+      paths: {
+        '/users': {
+          post: {
+            responses: {
+              '201': {
+                description: 'Created',
+                // 201 without content - just Location header
+              },
+            },
+          },
+        },
+      },
+    }
+
+    const scenarios = generateScenariosFromSpec(spec, 'no-content-spec')
+
+    expect(scenarios).toHaveLength(1)
+    expect(scenarios[0].recordings).toHaveLength(1)
+    expect(scenarios[0].recordings[0].response.status).toBe(201)
+    expect(scenarios[0].recordings[0].response.body).toBeNull()
   })
 })

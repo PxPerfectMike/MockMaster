@@ -1,5 +1,30 @@
 # @mockmaster/core
 
+## 1.0.3
+
+### Patch Changes
+
+- Fix multiple issues discovered in beta testing
+
+  **@mockmaster/core:**
+  - Added `extractParams` export alias for `parsePathParams` (matches documentation)
+  - Implemented missing `createMatcher` function to create reusable path matchers
+    - Takes an array of path patterns and returns a function that tests if a path matches any pattern
+    - Example: `const matcher = createMatcher(['/users/:id', '/posts/:id']); matcher('/users/123') // true`
+
+  **@mockmaster/data:**
+  - Restructured `fake` API to match @faker-js/faker's nested structure
+    - Added `fake.person.fullName()`, `fake.person.firstName()`, `fake.person.lastName()`, `fake.person.jobTitle()`
+    - Added `fake.internet.email()`, `fake.internet.userName()`, `fake.internet.url()`, `fake.internet.ipv4()`
+    - Added `fake.number.int({ min, max })`
+    - Added `fake.string.uuid()`
+    - Added `fake.helpers.arrayElement(array)`
+    - Kept flat API (`fake.name()`, `fake.email()`, etc.) as deprecated for backward compatibility
+
+  **@mockmaster/openapi:**
+  - Added support for `format: 'date'` in schema generation (returns YYYY-MM-DD format)
+  - Made `parseSpec` accept both string (YAML/JSON) and JavaScript object inputs for better developer experience
+
 ## 1.0.2
 
 ### Patch Changes
