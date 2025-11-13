@@ -1,6 +1,6 @@
 # MockMaster 🎭
 
-> Type-safe API mocking with record & replay
+> Type-safe API mocking with record & replay. Fully deterministic.
 
 [![Tests](https://img.shields.io/badge/tests-184%20passing-brightgreen)](https://github.com/PxPerfectMike/MockMaster) [![Coverage](https://img.shields.io/badge/coverage-90%25-brightgreen)](https://github.com/PxPerfectMike/MockMaster) [![TypeScript](https://img.shields.io/badge/typescript-5.3-blue)](https://github.com/PxPerfectMike/MockMaster) [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/PxPerfectMike/MockMaster)
 
@@ -8,11 +8,11 @@
 
 ## Why mockmaster?
 
+- **🔒 Type Safe** - Full TypeScript support with strict typing
 - **🎬 Record & Replay** - Capture production API responses once, replay forever
 - **📝 OpenAPI Integration** - Generate mocks from OpenAPI 3.0 specs (JSON & YAML)
 - **🏭 Realistic Data** - Built-in factories with Faker.js for authentic test data
 - **💾 Version Control** - Store scenarios as JSON, commit with your code
-- **🔒 Type Safe** - Full TypeScript support with strict typing
 - **🧪 Framework Agnostic** - Works with Vitest, Jest, Playwright, any test framework
 
 ## Quick Start
