@@ -30,9 +30,7 @@
     "api"
   ],
   "license": "MIT",
-  "dependencies": {
-    "fp-ts": "^2.16.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^20.11.0",
     "@vitest/coverage-v8": "^1.2.0",

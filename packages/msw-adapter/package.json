@@ -31,9 +31,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@mockmaster/core": "workspace:*",
-    "fp-ts": "^2.16.2",
-    "msw": "^2.1.0"
+    "@mockmaster/core": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
