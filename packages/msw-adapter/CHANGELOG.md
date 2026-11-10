@@ -1,5 +1,13 @@
 # @mockmaster/msw-adapter
 
+## 1.0.6
+
+### Patch Changes
+
+- Remove dependencies that no package imports (commander, chalk, inquirer, ora, fp-ts, immer, msw, openapi-types). Installs are smaller; behavior is unchanged.
+- Updated dependencies
+  - @mockmaster/core@1.0.5
+
 ## 1.0.5
 
 ### Patch Changes
